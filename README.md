@@ -1,10 +1,10 @@
-# Quill Discord Bot
+# quill-bot
 
-The official helper bot for the [Quill](https://quill.tradebuddy.dev) programming language community. Built entirely in Quill.
+The helper bot for the [Quill](https://quill.tradebuddy.dev) programming language community (Trade Buddy server)
 
 ## What is this?
 
-This bot is **written in Quill** (`bot.quill`) and compiled to JavaScript (`bot.js`). You never touch the JS file — it's auto-generated. You only write Quill.
+This bot is*written in Quill (`bot.quill`) and compiled to JavaScript (`bot.js`)
 
 ```
 quill build bot.quill    # compiles to bot.js
@@ -39,14 +39,12 @@ node bot.js
 
 ## How it works
 
-Quill compiles to JavaScript. The source code is in `bot.quill` — that's the only file you edit. The `bot.js` file is the compiled output.
+Quill compiles to JavaScript. The source code is in `bot.quill` which is the only file you edit. The `bot.js` file is the compiled output
 
 ```
 bot.quill  →  quill build  →  bot.js  →  node bot.js
  (you write)                  (auto-generated)    (runs it)
 ```
-
-No JavaScript knowledge required. Just write Quill.
 
 ## Links
 
