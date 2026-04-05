@@ -62,14 +62,24 @@ const commands = [
 
 const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
 
+const GUILD_ID = "1480524541645295700";
+
 (async () => {
   try {
-    console.log("Registering slash commands...");
+    // Remove global commands first
+    console.log("Clearing global commands...");
     await rest.put(
       Routes.applicationCommands(process.env.CLIENT_ID),
+      { body: [] }
+    );
+
+    // Register guild-specific commands (instant)
+    console.log("Registering server commands...");
+    await rest.put(
+      Routes.applicationGuildCommands(process.env.CLIENT_ID, GUILD_ID),
       { body: commands }
     );
-    console.log("Done! Slash commands registered globally.");
+    console.log("Done! Commands registered for server " + GUILD_ID + " (instant).");
   } catch (error) {
     console.error("Error registering commands:", error);
   }
