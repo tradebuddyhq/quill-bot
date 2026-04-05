@@ -1,0 +1,13 @@
+{
+  "name": "quill-discord-bot",
+  "version": "1.0.0",
+  "description": "Quill helper bot for the Trade Buddy Discord server — built in Quill",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "deploy-commands": "node deploy-commands.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3"
+  }
+}
