@@ -20,7 +20,7 @@ const commands = [
 
   new SlashCommandBuilder()
     .setName("help")
-    .setDescription("Learn about Quill — the programming language that reads like English"),
+    .setDescription("Learn about Quill"),
 
   new SlashCommandBuilder()
     .setName("example")
