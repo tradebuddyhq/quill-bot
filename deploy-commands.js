@@ -201,9 +201,7 @@ const showCanvas = (title) => {
 };
 process.on('exit', () => { if (__drawCmds.length > 0) showCanvas(); });
 
-const { REST } = require("discord.js");
-Routes;
-SlashCommandBuilder;
+const { REST, Routes, SlashCommandBuilder } = require("discord.js");
 let pingCmd = new SlashCommandBuilder();
 pingCmd.setName("ping");
 pingCmd.setDescription("Check if the bot is alive");
@@ -236,12 +234,9 @@ async function registerCommands() {
     await rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, GUILD_ID), { body: commands });
     console.log((("Done! Commands registered for server " + GUILD_ID) + " (instant)."));
   } catch (error) {
-  }
-  fails;
-  (error) => {
     console.log("Error registering commands:");
     console.log(error);
-  };
+  }
 }
 registerCommands();
 
