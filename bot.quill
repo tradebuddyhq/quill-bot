@@ -2,7 +2,6 @@
 -- A helper bot for the Quill programming language community
 
 use "discord.js" as Discord
-use "fs" as fs
 
 -- Load environment variables
 token is process.env.DISCORD_TOKEN
@@ -18,7 +17,7 @@ client is new Discord.Client({
 
 -- Bot is ready
 client on "ready" with:
-  say "Quill Bot is online as {client.user.tag}!"
+  say "Quill Bot is online as \{client.user.tag}!"
 
 -- Handle slash commands
 client on "interactionCreate" with interaction:
@@ -51,13 +50,13 @@ client on "interactionCreate" with interaction:
       interaction.reply("```\n-- Hello World in Quill\nsay \"Hello, World!\"\n```")
 
     if topic is "variables":
-      interaction.reply("```\n-- Variables in Quill\nname is \"Arhan\"\nage is 16\nsay \"My name is {name} and I'm {age}\"\n```")
+      interaction.reply("```\n-- Variables in Quill\nname is \"Arhan\"\nage is 16\nsay \"My name is \{name} and I'm \{age}\"\n```")
 
     if topic is "functions":
-      interaction.reply("```\n-- Functions in Quill\nto greet name:\n  say \"Hello, {name}!\"\n\ngreet(\"World\")\n```")
+      interaction.reply("```\n-- Functions in Quill\nto greet name:\n  say \"Hello, \{name}!\"\n\ngreet(\"World\")\n```")
 
     if topic is "loops":
-      interaction.reply("```\n-- Loops in Quill\ncolors are [\"red\", \"green\", \"blue\"]\nfor each color in colors:\n  say \"I like {color}\"\n```")
+      interaction.reply("```\n-- Loops in Quill\ncolors are [\"red\", \"green\", \"blue\"]\nfor each color in colors:\n  say \"I like \{color}\"\n```")
 
     if topic is "conditions":
       interaction.reply("```\n-- Conditions in Quill\nage is 18\nif age is greater than 16:\n  say \"You can drive\"\notherwise:\n  say \"Too young to drive\"\n```")
@@ -72,13 +71,13 @@ client on "interactionCreate" with interaction:
     keyword is interaction.options.getString("keyword")
 
     if keyword is "say":
-      interaction.reply("**`say`** — Print to the console\n```\nsay \"Hello, World!\"\nsay \"2 + 2 = {2 + 2}\"\n```")
+      interaction.reply("**`say`** — Print to the console\n```\nsay \"Hello, World!\"\nsay \"2 + 2 = \{2 + 2}\"\n```")
 
     if keyword is "is":
       interaction.reply("**`is`** — Assign a variable or check equality\n```\nname is \"Quill\"    -- assignment\nif name is \"Quill\":  -- comparison\n  say \"correct!\"\n```")
 
     if keyword is "to":
-      interaction.reply("**`to`** — Define a function\n```\nto greet name:\n  say \"Hello, {name}!\"\n\nto add a b:\n  give back a + b\n```")
+      interaction.reply("**`to`** — Define a function\n```\nto greet name:\n  say \"Hello, \{name}!\"\n\nto add a b:\n  give back a + b\n```")
 
     if keyword is "if":
       interaction.reply("**`if` / `otherwise`** — Conditionals\n```\nif age is greater than 18:\n  say \"adult\"\notherwise if age is greater than 12:\n  say \"teen\"\notherwise:\n  say \"child\"\n```")

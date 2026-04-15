@@ -1,0 +1,67 @@
+-- Register slash commands with Discord
+-- Written in Quill — compiles to JavaScript
+
+from "discord.js" use REST Routes SlashCommandBuilder
+
+-- Build slash commands
+pingCmd is new SlashCommandBuilder()
+pingCmd.setName("ping")
+pingCmd.setDescription("Check if the bot is alive")
+
+helpCmd is new SlashCommandBuilder()
+helpCmd.setName("help")
+helpCmd.setDescription("Learn about Quill")
+
+to buildExampleOption option:
+  give back option.setName("topic").setDescription("What example do you want to see?").setRequired(yes).addChoices(
+    { name: "Hello World", value: "hello" },
+    { name: "Variables", value: "variables" },
+    { name: "Functions", value: "functions" },
+    { name: "Loops", value: "loops" },
+    { name: "Conditions", value: "conditions" },
+    { name: "Testing", value: "testing" },
+    { name: "Discord Bot", value: "discord" }
+  )
+
+to buildSyntaxOption option:
+  give back option.setName("keyword").setDescription("Which keyword?").setRequired(yes).addChoices(
+    { name: "say (print)", value: "say" },
+    { name: "is (assign/compare)", value: "is" },
+    { name: "to (function)", value: "to" },
+    { name: "if / otherwise", value: "if" },
+    { name: "for each (loop)", value: "for" },
+    { name: "test / expect", value: "test" },
+    { name: "use (import)", value: "use" },
+    { name: "give back (return)", value: "give back" }
+  )
+
+exampleCmd is new SlashCommandBuilder()
+exampleCmd.setName("example")
+exampleCmd.setDescription("See a Quill code example")
+exampleCmd.addStringOption(buildExampleOption)
+
+syntaxCmd is new SlashCommandBuilder()
+syntaxCmd.setName("syntax")
+syntaxCmd.setDescription("Look up Quill syntax for a keyword")
+syntaxCmd.addStringOption(buildSyntaxOption)
+
+commands is [pingCmd.toJSON(), helpCmd.toJSON(), exampleCmd.toJSON(), syntaxCmd.toJSON()]
+
+rest is new REST({ version: "10" })
+rest.setToken(process.env.DISCORD_TOKEN)
+
+GUILD_ID is "1480524541645295700"
+
+-- Register commands
+to registerCommands:
+  try:
+    say "Clearing global commands..."
+    await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), { body: [] })
+    say "Registering server commands..."
+    await rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, GUILD_ID), { body: commands })
+    say "Done! Commands registered for server " + GUILD_ID + " (instant)."
+  fails with error:
+    say "Error registering commands:"
+    say error
+
+registerCommands()

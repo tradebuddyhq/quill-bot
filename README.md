@@ -4,11 +4,12 @@ The helper bot for the [Quill](https://quill.tradebuddy.dev) programming languag
 
 ## What is this?
 
-This bot is written in Quill (`bot.quill`) and compiled to JavaScript (`bot.js`)
+This bot is **100% Quill** — both `bot.quill` and `deploy-commands.quill` compile to JavaScript.
 
 ```
-quill build bot.quill    # compiles to bot.js
-node bot.js              # runs the compiled output
+quill build bot.quill                # compiles to bot.js
+quill build deploy-commands.quill    # compiles to deploy-commands.js
+node bot.js                          # runs the bot
 ```
 
 ## Commands
@@ -30,6 +31,10 @@ npm install
 cp .env.example .env
 # Edit .env with your values
 
+# Compile Quill source to JavaScript
+quill build bot.quill
+quill build deploy-commands.quill
+
 # Register slash commands
 node deploy-commands.js
 
@@ -39,11 +44,11 @@ node bot.js
 
 ## How it works
 
-Quill compiles to JavaScript. The source code is in `bot.quill` which is the only file you edit. The `bot.js` file is the compiled output
+Quill compiles to JavaScript. The source files are `bot.quill` and `deploy-commands.quill` — these are the only files you edit. The `.js` files are auto-generated.
 
 ```
-bot.quill  →  quill build  →  bot.js  →  node bot.js
- (you write)                  (auto-generated)    (runs it)
+bot.quill              →  quill build  →  bot.js
+deploy-commands.quill  →  quill build  →  deploy-commands.js
 ```
 
 ## Links
