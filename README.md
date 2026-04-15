@@ -4,7 +4,7 @@ The helper bot for the [Quill](https://quill.tradebuddy.dev) programming languag
 
 ## What is this?
 
-This bot is*written in Quill (`bot.quill`) and compiled to JavaScript (`bot.js`)
+This bot is written in Quill (`bot.quill`) and compiled to JavaScript (`bot.js`)
 
 ```
 quill build bot.quill    # compiles to bot.js
